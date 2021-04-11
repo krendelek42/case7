@@ -62,29 +62,33 @@ with open('input.txt', 'r', encoding='utf-8') as f_in:
 
     n = int(input('Количество генерируемых предложений: '))
 
-    def centence(dic_text):
+    def sentence(dic_text, start, end):
         first_w = first_word(start)
         n_text = [first_w]
+        iterator = 0
         while len(n_text) < 5:
             word = r.choice(dic_text[n_text[-1]])
-            if word[1] not in '.!?':
+            if word not in end:
                 n_text.append(word)
-        while n_text[-1] not in '?.!' and len(n_text) < 20:
+            elif (iterator > 5) and (iterator < 50):
+                n_text.pop()
+                iterator -=5
+            else:
+                break
+            iterator += 1
+        while (n_text[-1] not in end) and (len(n_text) < 20):
             word = r.choice(dic_text[n_text[-1]])
             n_text.append(word)
+        if n_text[-1] not in end:
+            for i in ':;"!,.?':
+                n_text[-1].replace(i, '')
+            n_text[-1] = n_text[-1] + r.choice(list('.!?'))
         return n_text
-
+with open('output.txt', 'w', encoding='utf-8') as f_out:
     for i in range(n):
-        print(' '.join(centence(dic_text)))
-
-    print(list_pair)
-    print(dic_text)
+        f_out.write(' '.join(sentence(dic_text, start, end)) + '')
 
 
-
-    print(start)   #  начальыне слова-ключи (заглавная буква)
-    print(text)   # список всх слов
-    print(end) # список конечных слов
 
 
 
