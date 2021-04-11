@@ -1,3 +1,11 @@
+"""Case-study Бредогенератор
+Разработчики:
+Докукина К.А. 60%
+Назирова Е.С. 40%
+
+""" 
+
+
 with open('input.txt', 'r', encoding='utf-8') as f_in:
     import random as r
     def all_text(f_in):
