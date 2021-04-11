@@ -86,7 +86,8 @@ with open('input.txt', 'r', encoding='utf-8') as f_in:
         return n_text
 with open('output.txt', 'w', encoding='utf-8') as f_out:
     for i in range(n):
-        f_out.write(''.join(sentence(dic_text, start, end)) + '')
+        f_out.write(' '.join(sentence(dic_text, start, end)) + '')
+
 
 
 
